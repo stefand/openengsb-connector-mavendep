@@ -40,7 +40,7 @@ public class MavendepServiceImpl extends AbstractOpenEngSBConnectorService imple
     }
 
     @Override
-    public void merge(OpenEngSBFileModel arg0) {
+    public void merge(OpenEngSBFileModel directory, String dependencyLocation) {
         // TODO Auto-generated method stub
     }
 
