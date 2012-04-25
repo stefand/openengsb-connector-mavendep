@@ -25,12 +25,13 @@ import org.openengsb.domain.dependency.DependencyDomainEvents;
 
 public class MavendepServiceInstanceFactory extends AbstractConnectorInstanceFactory<MavendepServiceImpl> {
 
-    @SuppressWarnings("unused")
     private DependencyDomainEvents dependencyEvents;
 
     @Override
     public Connector createNewInstance(String id) {
-        return new MavendepServiceImpl(id);
+        MavendepServiceImpl service = new MavendepServiceImpl(id);
+        service.setDependencyEvents(dependencyEvents);
+        return service;
     }
 
     public void setDependencyEvents(DependencyDomainEvents events) {
@@ -47,5 +48,4 @@ public class MavendepServiceInstanceFactory extends AbstractConnectorInstanceFac
             instance.setAttribute(attributes.get("attribute"));
         }
     }
-
 }
