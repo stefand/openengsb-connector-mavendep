@@ -68,7 +68,7 @@ public class MavendepServiceImpl extends AbstractOpenEngSBConnectorService imple
     }
 
     @Override
-    public void merge(final OpenEngSBFileModel directory, final String dependencyLocation) {
+    public void merge(final OpenEngSBFileModel directory, final String dependencyLocation, final long processId) {
         final String contextId = ContextHolder.get().getCurrentContextId();
         Runnable runMerge = new Runnable() {
 
@@ -83,10 +83,10 @@ public class MavendepServiceImpl extends AbstractOpenEngSBConnectorService imple
                 if (error == null) {
                     OpenEngSBFileModel outPath = ModelUtils.createEmptyModelObject(OpenEngSBFileModel.class);
                     outPath.setFile(projectPath);
-                    events.raiseEvent(new MergeSuccessEvent(outPath, ""));
+                    events.raiseEvent(new MergeSuccessEvent(processId, outPath, ""));
                 } else {
                     System.out.println("Error: " + error);
-                    events.raiseEvent(new MergeFailEvent(error));
+                    events.raiseEvent(new MergeFailEvent(processId, error));
                 }
                 ContextHolder.get().setCurrentContextId(oldCtx);
             }

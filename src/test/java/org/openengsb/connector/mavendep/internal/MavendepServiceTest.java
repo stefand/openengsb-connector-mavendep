@@ -100,7 +100,7 @@ public class MavendepServiceTest {
         service.setAttribute("junit.version");
 
         synchronized(events) {
-            service.merge(fileModel, "123");
+            service.merge(fileModel, "123", 9876L);
             events.wait();
         }
         assertThat(lastEvent instanceof MergeFailEvent, is(true));
@@ -115,7 +115,7 @@ public class MavendepServiceTest {
             service.setAttribute("junit.version");
     
             synchronized(events) {
-                service.merge(fileModel, "123");
+                service.merge(fileModel, "123", 12345L);
                 events.wait();
             }
             assertThat(lastEvent instanceof MergeFailEvent, is(true));
@@ -130,7 +130,7 @@ public class MavendepServiceTest {
         String origContent = FileUtils.readFileToString(new File(testDir, "pom.xml"));
 
         synchronized(events) {
-            service.merge(fileModel, "123");
+            service.merge(fileModel, "123", 1701L);
             events.wait();
         }
         assertThat(lastEvent instanceof MergeFailEvent, is(true));
@@ -151,7 +151,7 @@ public class MavendepServiceTest {
         assertThat(content.contains("<junit.version>" + testVersion + "</junit.version>"), is(false));
 
         synchronized(events) {
-            service.merge(fileModel, testVersion);
+            service.merge(fileModel, testVersion, 42L);
             events.wait();
         }
         assertThat(lastEvent instanceof MergeSuccessEvent, is(true));
