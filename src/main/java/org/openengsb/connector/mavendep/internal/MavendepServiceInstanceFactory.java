@@ -44,8 +44,8 @@ public class MavendepServiceInstanceFactory extends AbstractConnectorInstanceFac
         if (attributes.containsKey("pomfile")) {
             instance.setPomFile(attributes.get("pomfile"));
         }
-        if (attributes.containsKey("attribute")) {
-            instance.setAttribute(attributes.get("attribute"));
+        if (attributes.containsKey("property")) {
+            instance.setAttribute(attributes.get("property"));
         }
     }
 }
